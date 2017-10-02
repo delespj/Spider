@@ -1,0 +1,2 @@
+-ca envoi pas quand le message est trop court chelou !
+-fct send_msg(msg) pour envoyer client/server server/client
