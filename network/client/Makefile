@@ -8,9 +8,9 @@ OBJ		=	$(SRC:.cpp=.o)
 
 CC		=	g++
 
-CPPFLAGS	=	-I ../boost_1_65_1/
+CPPFLAGS	=	-I ../../../boost_1_65_1/
 
-LIB		=	-L ../boost_1_65_1/ABC/lib/ -lboost_system -Wl,-rpath,../boost_1_65_1/ABC/lib/
+LIB		=	-L ../../../boost_1_65_1/ABC/lib/ -lboost_system -Wl,-rpath,../../../boost_1_65_1/ABC/lib/
 
 RM		=	rm -f
 
