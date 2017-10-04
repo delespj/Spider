@@ -1,7 +1,7 @@
 To do :
 
 -Merge Network
--Fix bug network (msg too short are not send)
+-Fix bug network (msg too short are not send) !DONE!
 -Fix bug Event mouse (can't get click event)
 -Merge Event
 -Merge Record

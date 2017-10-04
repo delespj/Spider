@@ -11,9 +11,10 @@
 class Connection : public boost::enable_shared_from_this<Connection>
 {
 private:
-  boost::asio::deadline_timer timer;
-  boost::asio::ip::tcp::socket sock;
-  boost::array<char, 128> buffer;
+  boost::asio::deadline_timer	timer;
+  boost::asio::ip::tcp::socket	sock;
+  std::string			msg_receive;
+  boost::array<char, 1>		buffer;
 
 public:
   Connection(boost::asio::io_service& io_service);

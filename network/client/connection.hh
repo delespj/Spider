@@ -12,7 +12,8 @@ class Connection : public boost::enable_shared_from_this<Connection>
 {
 private:
   boost::asio::ip::tcp::socket	sock;
-  boost::array<char, 128>	buff;
+  boost::array<char, 1>		buff;
+  std::string			msg_receive;
 
 public:
 

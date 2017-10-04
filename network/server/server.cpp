@@ -12,7 +12,7 @@ Server::~Server()
 
 void	Server::accept()
 {
-  Connection::pointer new_connection = Connection::create(acceptor.get_io_service());
+  Connection::pointer new_connection = Connection::create(this->acceptor.get_io_service());
   acceptor.async_accept(new_connection->get_socket(), boost::bind(&Server::handle, this, new_connection, boost::asio::placeholders::error)); 
 }
 
@@ -21,7 +21,8 @@ void	Server::handle(Connection::pointer new_connection, const boost::system::err
     if (!error)
       {
 	std::cout << "Reçu un client!" << std::endl;
-	new_connection->send_msg("Ca marche ou pas ?????");
+	new_connection->read_msg();
+	new_connection->send_msg("boost overated\n");
 	accept();
       }
   }

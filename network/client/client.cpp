@@ -12,7 +12,7 @@ client::~client()
 
 void	client::connect(boost::asio::ip::tcp::endpoint& endpoint)
 {
-  Connection::pointer new_connection = Connection::create(io);
+  Connection::pointer new_connection = Connection::create(this->io);
   boost::asio::ip::tcp::socket& socket = new_connection->get_socket();
   socket.async_connect(endpoint, boost::bind(&client::handle_connect, this, new_connection, boost::asio::placeholders::error));
 }
@@ -21,7 +21,8 @@ void	client::handle_connect(Connection::pointer new_connection, const boost::sys
 {
   if (!error)
     {
-      new_connection->send_msg("message au client????");
       new_connection->read();
+      new_connection->send_msg("Status\n");
+      new_connection->send_msg("boost overrated\n");
     }
 }
