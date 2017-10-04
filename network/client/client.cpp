@@ -23,6 +23,6 @@ void	client::handle_connect(Connection::pointer new_connection, const boost::sys
     {
       new_connection->read();
       new_connection->send_msg("Status\n");
-      new_connection->send_msg("boost overrated\n");
+      new_connection->send_msg("boost overrated\n");;;
     }
 }

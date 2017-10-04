@@ -12,8 +12,10 @@ class Connection : public boost::enable_shared_from_this<Connection>
 {
 private:
   boost::asio::ip::tcp::socket	sock;
-  boost::array<char, 1>		buff;
-  std::string			msg_receive;
+  boost::asio::streambuf	buff;
+  boost::array<char, 10> b1;
+  boost::array<char, 15> b2;
+  //  std::string			msg_receive;
 
 public:
 
@@ -26,6 +28,9 @@ public:
   void	send_msg(std::string msg);
   void	handle_write(const boost::system::error_code& error);
   void	handle_read(const boost::system::error_code& error, size_t number_bytes_read);
+  void	handle_header(const boost::system::error_code& error);
+  void	handle_read_info(const boost::system::error_code& error);
+  void	handle_message(const boost::system::error_code& error);
   boost::asio::ip::tcp::socket	&get_socket();
 };
 

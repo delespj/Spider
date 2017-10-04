@@ -1,8 +1,8 @@
 NAME		=	client
 
-SRC		=	client.cpp\
+SRC		=	main.cpp\
 			connection.cpp\
-			main.cpp
+			client.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 

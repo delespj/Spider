@@ -11,13 +11,12 @@ Connection::~Connection()
 
 void	Connection::send_msg(std::string msg)
 {
-  //  boost::asio::async_write(this->sock, boost::asio::buffer(msg), boost::bind(&Connection::handle_write, shared_from_this(), boost::asio::placeholders::error));
   this->sock.send(boost::asio::buffer(msg));
 }
 
 void	Connection::read()
 {
-  boost::asio::async_read(this->sock, boost::asio::buffer(buff), boost::bind(&Connection::handle_read, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+  boost::asio::async_read(this->sock, boost::asio::buffer(b1), boost::bind(&Connection::handle_header, shared_from_this(), boost::asio::placeholders::error));
 }
 
 void    Connection::handle_write(const boost::system::error_code& error)
@@ -32,25 +31,20 @@ void    Connection::handle_write(const boost::system::error_code& error)
     }
 }
 
-void	Connection::handle_read(const boost::system::error_code& error, size_t number_bytes_read)
+void	Connection::handle_header(const boost::system::error_code& code)
 {
-  if (!error)
-    {
-      std::string to_string(buff.begin(), buff.end());
-      std::string msg(to_string, 0, number_bytes_read);
-      if (msg != "\n")
-	this->msg_receive += msg;
-      else
-	{
-	  std::cout << this->msg_receive << std::endl;
-	  this->msg_receive.clear();
-	}
-      read();
-    }
-  else
-    {
-      std::cout << error.message();
-    }
+  std::cout << "header: ";
+  std::cout.write(&this->b1[0], 10);
+  std::cout << std::endl;
+  boost::asio::async_read(this->sock, boost::asio::buffer(b2), boost::bind(&Connection::handle_message, shared_from_this(), boost::asio::placeholders::error));
+}
+
+void	Connection::handle_message(const boost::system::error_code& code)
+{
+  std::cout << "message: ";
+  std::cout.write(&this->b2[0], 15);
+  std::cout << std::endl;
+  read();
 }
 
 boost::asio::ip::tcp::socket&	Connection::get_socket()

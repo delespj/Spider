@@ -17,12 +17,12 @@ void	Server::accept()
 }
 
 void	Server::handle(Connection::pointer new_connection, const boost::system::error_code& error)
-  {
-    if (!error)
-      {
-	std::cout << "Reçu un client!" << std::endl;
-	new_connection->read_msg();
-	new_connection->send_msg("boost overated\n");
-	accept();
-      }
-  }
+{
+  if (!error)
+    {
+      std::cout << "Reçu un client!" << std::endl;
+      new_connection->read_msg();
+      new_connection->send_msg("test si ca marche c'est un header ta mere\n");
+      accept();
+    }
+}
