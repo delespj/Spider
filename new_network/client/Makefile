@@ -1,7 +1,7 @@
-NAME		=	server
+NAME		=	client
 
 SRC		=	main.cpp\
-			server.cpp\
+			client.cpp\
 			connection.cpp
 
 OBJ		=	$(SRC:.cpp=.o)

@@ -23,5 +23,7 @@ void	client::handle_connect(Connection::pointer new_connection, const boost::sys
     {
       new_connection->read();
       new_connection->send_msg("000000000000000000000000000000000000000000000000");
+      new_connection->send_msg("111111111111111111111111111111111111111111111111");
+      new_connection->send_msg("222222222222222222222222222222222222222222222222");
     }
 }

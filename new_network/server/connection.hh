@@ -11,9 +11,7 @@
 class Connection : public boost::enable_shared_from_this<Connection>
 {
 private:
-  boost::asio::deadline_timer	timer;
   boost::asio::ip::tcp::socket	sock;
-  std::string			msg_receive;
   boost::array<char, 48>		buffer;
 
 public:
@@ -21,7 +19,6 @@ public:
   ~Connection();
   void	send_msg(std::string msg);
   void	read_msg();
-  void	handle_write(const boost::system::error_code& error);
   void	handle_read(const boost::system::error_code& error, size_t number_bytes_read);
   void	close();
   boost::asio::ip::tcp::socket& get_socket();
