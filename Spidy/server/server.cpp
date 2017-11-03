@@ -14,7 +14,6 @@ void	server::do_accept()
 			       std::cout << "client received\n";
 			       std::make_shared<session>(std::move(socket_))->start();
 			     }
-
 			   do_accept();
 			 });
 }
